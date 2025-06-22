@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8" />
+    <title>Motor feltöltése</title>
+</head>
+<body>
+
+<h2>Motor feltöltése</h2>
+<!--<label for="id">ID:</label>
+<input type="number" id="id" />
+<br/>-->
+<label for="name">Név:</label>
+<input type="text" id="name" />
+<br/>
+<label for="brand">Márka:</label>
+<input type="text" id="brand" />
+<br/>
+<label for="model">Modell:</label>
+<input type="text" id="model" />
+<br/>
+<label for="buildYear">Évjárat:</label>
+<input type="number" id="buildYear" />
+<br/>
+<label for="length">Hossz (cm):</label>
+<input type="number" id="length" />
+<br/>
+<label for="dailyRate">Bérleti díj (naponta):</label>
+<input type="number" step="0.01" id="dailyRate" />
+<br/>
+<label for="available">Elérhető (1=igen, 0=nem):</label>
+<input type="number" min="0" max="1" id="available" />
+<br/>
+<label for="numberOfSeats">Ülések száma:</label>
+<input type="number" id="numberOfSeats" />
+<br/>
+<button onclick="uploadBoat()">Feltöltés</button>
+<p id="uploadResult"></p>
+
+<script>
+    const apiBase = "http://localhost:9090/api/motor";
+
+    async function uploadBoat() {
+        const boat = {
+            // id: parseInt(document.getElementById("id").value),
+            name: document.getElementById("name").value,
+            brand: document.getElementById("brand").value,
+            model: document.getElementById("model").value,
+            build_year: parseInt(document.getElementById("buildYear").value),
+            length: parseFloat(document.getElementById("length").value),
+            daily_rate: parseFloat(document.getElementById("dailyRate").value),
+            available: document.getElementById("available").value === "1",
+            number_of_seats: parseInt(document.getElementById("numberOfSeats").value),
+            version: 0
+        };
+
+        try {
+            const response = await fetch(apiBase, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(boat)
+            });
+
+            if (response.ok) {
+                document.getElementById("uploadResult").textContent = "Motor sikeresen feltöltve.";
+            } else {
+                const errorText = await response.text();
+                document.getElementById("uploadResult").textContent = "Hiba a Motor feltöltése során: " + response.status + " - " + errorText;
+            }
+        } catch (error) {
+            document.getElementById("uploadResult").textContent = "Hiba: " + error;
+        }
+    }
+</script>
+
+</body>
+</html>
