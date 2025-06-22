@@ -23,15 +23,17 @@ jobs:
       - name: Configure GitHub Packages credentials
         run: |
           mkdir -p ~/.m2
-          echo '<settings>' > ~/.m2/settings.xml
-          echo '  <servers>' >> ~/.m2/settings.xml
-          echo '    <server>' >> ~/.m2/settings.xml
-          echo '      <id>github</id>' >> ~/.m2/settings.xml
-          echo '      <username>${{ secrets.MY_GH_USERNAME }}</username>
-          echo '      <password>${{ secrets.MY_GH_TOKEN }}</password>
-          echo '    </server>' >> ~/.m2/settings.xml
-          echo '  </servers>' >> ~/.m2/settings.xml
-          echo '</settings>' >> ~/.m2/settings.xml
+          cat <<EOF > ~/.m2/settings.xml
+          <settings>
+            <servers>
+              <server>
+                <id>github</id>
+                <username>${{ secrets.MY_GH_USERNAME }}</username>
+                <password>${{ secrets.MY_GH_TOKEN }}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
 
       - name: Build with Maven
         run: mvn clean install
