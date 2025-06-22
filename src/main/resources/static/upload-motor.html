@@ -41,8 +41,8 @@
     const apiBase = "http://localhost:9090/api/motor";
 
     async function uploadMotor() {
-        const boat = {
-            // id: parseInt(document.getElementById("id").value),
+        const motor = {
+
             name: document.getElementById("name").value,
             brand: document.getElementById("brand").value,
             model: document.getElementById("model").value,
@@ -60,7 +60,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(boat)
+                body: JSON.stringify(motor)
             });
 
             if (response.ok) {
