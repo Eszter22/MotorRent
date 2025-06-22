@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <title>Motor törlése</title>
+</head>
+<body>
+
+<h2>Motor törlése</h2>
+
+<label for="deleteId">Törlendő Motor ID:</label>
+<input type="number" id="deleteId" value="1" />
+
+<button onclick="deleteMotor()">Motor törlése</button>
+
+<p id="deleteResult"></p>
+
+<script>
+
+
+  async function deleteMotor() {
+    const id = document.getElementById("deleteId").value;
+    const resultElement = document.getElementById("deleteResult");
+
+    if (!id || isNaN(id)) {
+      resultElement.textContent = "Kérlek, adj meg egy érvényes ID-t.";
+      return;
+    }
+
+    try {
+      const response = await fetch(`${apiBase}/${id}`, {
+        method: 'DELETE'
+      });
+
+      if (response.ok) {
+        resultElement.textContent = "Motor sikeresen törölve.";
+      } else if (response.status === 404) {
+        resultElement.textContent = "Nem található ilyen ID-jű motor.";
+      } else {
+        resultElement.textContent = `Hiba a törlés során: ${response.status}`;
+      }
+    } catch (error) {
+      resultElement.textContent = `Hiba: ${error}`;
+    }
+  }
+</script>
+
+
+</body>
+</html>
