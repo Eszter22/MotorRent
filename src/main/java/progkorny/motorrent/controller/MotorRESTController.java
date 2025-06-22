@@ -11,7 +11,7 @@ import java.util.List;
 // Ez az osztály egy REST API vezérlő (controller), amely a Motork kezeléséért felel.
 // Az URL-ek a "/api/Motors" útvonalról érhetők el.
 @RestController
-@RequestMapping("/api/Motors")
+@RequestMapping("/api/motor")
 public class MotorRESTController {
     // A Motorkkal kapcsolatos üzleti logikát egy külön szolgáltatás (service) kezeli.
     // Az @Autowired automatikusan betölti a MotorService példányt a Spring konténerből.

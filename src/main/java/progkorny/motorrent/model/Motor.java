@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 // Ez az osztály a "Motor" nevű adatbázistáblát reprezentálja.
 // Az @Entity jelzi, hogy ez egy JPA entitás.
 @Entity
-@Table(name = "Motor") // Megadja, hogy az osztály a "Motor" táblához tartozik.
+@Table(name = "motor") // Megadja, hogy az osztály a "Motor" táblához tartozik.
 public class Motor {
 
     // Az elsődleges kulcs (id), amelyet az adatbázis generál automatikusan (AUTO_INCREMENT).
