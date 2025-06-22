@@ -34,13 +34,13 @@
 <label for="numberOfSeats">Ülések száma:</label>
 <input type="number" id="numberOfSeats" />
 <br/>
-<button onclick="uploadBoat()">Feltöltés</button>
+<button onclick="uploadMotor()">Feltöltés</button>
 <p id="uploadResult"></p>
 
 <script>
     const apiBase = "http://localhost:9090/api/motor";
 
-    async function uploadBoat() {
+    async function uploadMotor() {
         const boat = {
             // id: parseInt(document.getElementById("id").value),
             name: document.getElementById("name").value,
