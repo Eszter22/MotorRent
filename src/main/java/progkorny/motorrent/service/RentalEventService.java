@@ -17,7 +17,7 @@ public class RentalEventService {
     private List<RentalEvent> rentalEvents = new ArrayList<RentalEvent>(List.of(
             RentalEvent.builder()
                     .id(1)                            // Az esemény azonosítója
-                    .Motor(new Motor())                 // Új hajó objektum (üres példány)
+                    .Motor(new Motor())                 // Új motor objektum (üres példány)
                     .customer(new Customer())         // Új ügyfél objektum (üres példány)
                     .rentalDate(LocalDate.of(2025, 3, 18))  // Bérlés kezdete
                     .isClosed(true)                          // Bérlés lezárva
